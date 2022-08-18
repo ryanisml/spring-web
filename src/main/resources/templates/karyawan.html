@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List Data Karyawan</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container-fluid text-center">
+    <h2>List Data Karyawan</h2>
+    <div><a class="h3" th:href="@{/karyawan/new}">Add Karyawan</a></div>
+</div>
+<div th:if="${message}" class="alert alert-success text-center">
+    [[${message}]]
+</div>
+<table class="table table-bordered">
+    <thead class="thead-dark">
+    <tr>
+        <th>NIK</th>
+        <th>Nama</th>
+        <th>Email</th>
+        <th>Enable</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <th:block th:each="karyawan : ${listKaryawan}">
+        <tr>
+            <td>[[${karyawan.id}]]</td>
+            <td>[[${karyawan.nama}]]</td>
+            <td>[[${karyawan.email}]]</td>
+            <td>[[${karyawan.isEnabled}]]</td>
+            <td class="text-center">
+                <a th:href="@{'/karyawan/edit/' + ${karyawan.id}}">Edit</a>
+                <a th:href="@{'/karyawan/delete/' + ${karyawan.id}}">Delete</a>
+            </td>
+        </tr>
+    </th:block>
+    </tbody>
+</table>
+</body>
+</html>
